@@ -32,13 +32,14 @@ public class BookService {
                 throw new RuntimeException("메일 전송 실패!");
             }
         }
-        return new BookResDto().toDto(bookPS);
+        return bookPS.toDto();
     }
 
     // 2. 책 목록보기
     public List<BookResDto> 책목록보기(){
         return bookRepository.findAll().stream()
-        .map(new BookResDto()::toDto)
+        //.map((bookPS) -> bookPS.toDto())
+        .map(Book::toDto)
         .collect(Collectors.toList());
     }
 
@@ -46,7 +47,7 @@ public class BookService {
     public BookResDto 책한건보기(Long id){
         Optional<Book> bookOP = bookRepository.findById(id);
         if(bookOP.isPresent()){
-            return new BookResDto().toDto(bookOP.get());
+            return bookOP.get().toDto();
         } else {
             throw new RuntimeException("해당아이디를 찾을수 없다");
         }
@@ -63,14 +64,16 @@ public class BookService {
 
     // 5. 책 수정
     @Transactional(rollbackFor = RuntimeException.class)
-    public void 책수정하기(Long id, BookSaveReqDto dto){
+    public BookResDto 책수정하기(Long id, BookSaveReqDto dto){
         Optional<Book> bookOP = bookRepository.findById(id);
         if(bookOP.isPresent()){
             Book bookPS = bookOP.get();
             bookPS.update(dto.getTitle(), dto.getAuthor());
+            return bookPS.toDto();
         } else {
             throw new RuntimeException("해당아이디를 찾을수 없다");
         }
+        
     } // 메서드 종료시 더티체킹(flush)으로 update 된다.
 
 }
