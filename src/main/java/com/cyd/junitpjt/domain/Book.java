@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import com.cyd.junitpjt.web.dto.BookResDto;
+import com.cyd.junitpjt.web.dto.response.BookResDto;
 
 import lombok.Builder;
 import lombok.Getter;

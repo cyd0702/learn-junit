@@ -1,4 +1,4 @@
-package com.cyd.junitpjt.web.dto;
+package com.cyd.junitpjt.web.dto.response;
 
 import com.cyd.junitpjt.domain.Book;
 

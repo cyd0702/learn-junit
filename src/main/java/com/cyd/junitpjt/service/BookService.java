@@ -10,8 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cyd.junitpjt.domain.Book;
 import com.cyd.junitpjt.domain.BookRepository;
 import com.cyd.junitpjt.util.MailSender;
-import com.cyd.junitpjt.web.dto.BookResDto;
-import com.cyd.junitpjt.web.dto.BookSaveReqDto;
+import com.cyd.junitpjt.web.dto.request.BookSaveReqDto;
+import com.cyd.junitpjt.web.dto.response.BookResDto;
 
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
