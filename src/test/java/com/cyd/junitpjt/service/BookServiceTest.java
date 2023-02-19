@@ -17,6 +17,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.ActiveProfiles;
 
 import com.cyd.junitpjt.domain.Book;
 import com.cyd.junitpjt.domain.BookRepository;
@@ -25,6 +26,7 @@ import com.cyd.junitpjt.web.dto.request.BookSaveReqDto;
 import com.cyd.junitpjt.web.dto.response.BookListResDto;
 import com.cyd.junitpjt.web.dto.response.BookResDto;
 
+@ActiveProfiles("dev")
 @ExtendWith(MockitoExtension.class)
 public class BookServiceTest {
 
