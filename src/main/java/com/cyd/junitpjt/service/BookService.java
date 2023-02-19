@@ -11,6 +11,7 @@ import com.cyd.junitpjt.domain.Book;
 import com.cyd.junitpjt.domain.BookRepository;
 import com.cyd.junitpjt.util.MailSender;
 import com.cyd.junitpjt.web.dto.request.BookSaveReqDto;
+import com.cyd.junitpjt.web.dto.response.BookListResDto;
 import com.cyd.junitpjt.web.dto.response.BookResDto;
 
 import lombok.NoArgsConstructor;
@@ -36,11 +37,15 @@ public class BookService {
     }
 
     // 2. 책 목록보기
-    public List<BookResDto> 책목록보기(){
-        return bookRepository.findAll().stream()
+    public BookListResDto 책목록보기(){
+
+        List<BookResDto> dtos = bookRepository.findAll().stream()
         //.map((bookPS) -> bookPS.toDto())
         .map(Book::toDto)
         .collect(Collectors.toList());
+
+        BookListResDto bookListResDto = BookListResDto.builder().bookList(dtos).build();
+        return bookListResDto;
     }
 
     // 3. 책 한건보기

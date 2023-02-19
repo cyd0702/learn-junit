@@ -21,8 +21,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import com.cyd.junitpjt.domain.Book;
 import com.cyd.junitpjt.domain.BookRepository;
 import com.cyd.junitpjt.util.MailSender;
-import com.cyd.junitpjt.util.MailSenderStub;
 import com.cyd.junitpjt.web.dto.request.BookSaveReqDto;
+import com.cyd.junitpjt.web.dto.response.BookListResDto;
 import com.cyd.junitpjt.web.dto.response.BookResDto;
 
 @ExtendWith(MockitoExtension.class)
@@ -84,18 +84,18 @@ public class BookServiceTest {
     @Test
     public void 책목록보기_테스트(){
         //given (파라미터 올 데이터)
-
-        //stub (가설)
         List<Book> books = new ArrayList<>();
         books.add(new Book(1L, "junit", "cyd"));
         books.add(new Book(2L, "spring", "cyd"));
+
+        //stub (가설)
         when(bookRepository.findAll()).thenReturn(books);
 
         //when
-        List<BookResDto> bookResDtoList = bookService.책목록보기();
+        BookListResDto bookListResDto = bookService.책목록보기();
 
         //then
-        assertThat(bookResDtoList.get(0).getTitle()).isEqualTo( "junit");
+        assertThat(bookListResDto.getItems().get(0).getTitle()).isEqualTo( "junit");
     }
 
     @Test
